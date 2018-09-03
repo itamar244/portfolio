@@ -1,0 +1,84 @@
+@import "~normalize.css";
+
+@theme-black: #212121;
+@theme-line-width: 5px;
+
+.square(@dimensions) {
+  width: @dimensions;
+  height: @dimensions;
+}
+
+button {
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+#root {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.header {
+  margin: 60px auto 0 auto;
+  display: flex;
+  height: 50px;
+  padding-top: 50px;
+
+  &__link {
+    font: bold 28px 'Alef';
+    flex: 1 1;
+    margin: 0 20px;
+    background-color: transparent;
+    border: none;
+    border-bottom: solid @theme-line-width @theme-black;
+  }
+
+  & > .logo {
+    transform: translateY(-50%);
+  }
+}
+
+.logo {
+  position: relative;
+  width: 100px;
+  height: 100px;
+
+  &__box, &__box--inner {
+    position: relative;
+    border: solid @theme-line-width @theme-black;
+    box-sizing: border-box;
+  }
+
+  &__box {
+    .square(100%);
+    transform: rotate(45deg);
+  }
+
+  &__box--inner {
+    .square(80%);
+    border-left: none;
+    border-top: none;
+    transform: translate(12px, 12px);
+  }
+
+  &__text {
+    font: 52px 'Kosugi';
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 2%;
+    margin: 0;
+    // fix difference between I to Y in the logo position
+    margin-left: -2.5px;
+  }
+}
+
+
+.content {
+  &:not(.active) {
+    display: none;
+  }
+}

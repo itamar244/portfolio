@@ -1,0 +1,22 @@
+{{#*inline "header__link"}}
+  <button
+    class="header__link {{#if active}}active{{/if}}"
+    data-text="header.{{page}}"
+    name="{{page}}"
+  ></button>
+{{/inline}}
+
+<header class="header">
+  {{>header__link page="about" active="true"}}
+  {{>header__link page="projects"}}
+
+  <div class="logo">
+    <div class="logo__box">
+      <div class="logo__box--inner"></div>
+    </div>
+    <h1 class="logo__text">IY</h1>
+  </div>
+
+  {{>header__link page="works"}}
+  {{>header__link page="lang"}}
+</header>

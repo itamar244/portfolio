@@ -7,15 +7,24 @@ module.exports = (env = 'none') => ({
   module: {
     rules: [
       {
+        test: /\.(css|less)$/,
+        loader: ['style-loader', 'css-loader', 'less-loader'],
+      },
+      {
         test: /\.hbs$/,
         loader: 'handlebars-loader',
+      },
+      {
+        type: 'json',
+        test: /\.yaml$/,
+        loader: 'yaml-loader',
       },
     ],
   },
 
   plugins: [
     new HTMLWebpackPlugin({
-      template: './views/index.hbs',
+      template: './src/views/index.hbs',
     }),
   ],
 });
