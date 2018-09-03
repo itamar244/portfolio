@@ -1,19 +1,26 @@
 import onDomLoaded from './on-dom-loaded';
+import { query, queryAll } from './dom-utils';
 import { attachTextToElements } from './texts';
 
 import './styles/main.less';
 
+const links = () => queryAll('.header__link');
+const activeLink = () => query('.header__link.active');
+const content = (name) => query(`.content--${name}`);
 
 onDomLoaded(() => {
-  attachTextToElements(document.querySelectorAll('[data-text]'));
+  attachTextToElements(queryAll('[data-text]'));
 
-  document.querySelectorAll('.header__link').forEach(link => {
+  const activeLinkName = activeLink().name;
+  content(activeLinkName).classList.add('active');
+
+  links().forEach(link => {
     link.addEventListener('click', () => {
       if (!link.classList.contains('active')) {
-        document.querySelector('.header__link.active').classList.remove('active');
-        document.querySelector('.content.active').classList.remove('active');
+        activeLink().classList.remove('active');
+        query('.content.active').classList.remove('active');
         link.classList.add('active');
-        document.querySelector(`.content--${link.name}`).classList.add('active');
+        content(link.name).classList.add('active');
       }
     });
   });

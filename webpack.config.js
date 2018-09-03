@@ -1,30 +1,50 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = (env = 'none') => ({
-  mode: env,
-  entry: './src/index.js',
+module.exports = (env = 'none') => {
+  const CSS_LOADERS = ['css-loader', 'less-loader'];
 
-  module: {
-    rules: [
-      {
-        test: /\.(css|less)$/,
-        loader: ['style-loader', 'css-loader', 'less-loader'],
-      },
-      {
-        test: /\.hbs$/,
-        loader: 'handlebars-loader',
-      },
-      {
-        type: 'json',
-        test: /\.yaml$/,
-        loader: 'yaml-loader',
-      },
+  const config = {
+    mode: env,
+    entry: './src/index.js',
+
+    module: {
+      rules: [
+        {
+          test: /\.(css|less)$/,
+          loader: CSS_LOADERS,
+        },
+        {
+          test: /\.hbs$/,
+          loader: 'handlebars-loader',
+        },
+        {
+          type: 'json',
+          test: /\.yaml$/,
+          loader: 'yaml-loader',
+        },
+      ],
+    },
+
+    plugins: [
+      new HTMLWebpackPlugin({
+        template: './src/views/index.hbs',
+      }),
+      new CopyWebpackPlugin([
+        { from: './public', to: './' }
+      ]),
     ],
-  },
+  };
 
-  plugins: [
-    new HTMLWebpackPlugin({
-      template: './src/views/index.hbs',
-    }),
-  ],
-});
+  if (env === 'production') {
+    CSS_LOADERS.unshift(MiniCssExtractPlugin.loader);
+    config.plugins.push(new MiniCssExtractPlugin({
+      filename: 'styles.css',
+    }));
+  } else {
+    CSS_LOADERS.unshift('style-loader');
+  }
+
+  return config;
+};
