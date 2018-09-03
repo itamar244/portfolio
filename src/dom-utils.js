@@ -30,6 +30,16 @@ export function createElement(tag, props, ...children) {
 
 export function removeElement(element) {
   if (element != null && element.parentElement != null) {
-    element.parentElement.remove(element);
+    element.parentElement.removeChild(element);
+  }
+}
+
+export function onDomLoaded(callback) {
+  if (document.readyState === 'completed') {
+    callback();
+  } else {
+    window.addEventListener('DOMContentLoaded', () => {
+      callback();
+    });
   }
 }

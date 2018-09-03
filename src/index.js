@@ -1,6 +1,5 @@
-import onDomLoaded from './on-dom-loaded';
-import { query, queryAll } from './dom-utils';
 import { attachTextToElements } from './texts';
+import { onDomLoaded, query, queryAll, removeElement } from './dom-utils';
 
 import './styles/main.less';
 
@@ -10,6 +9,10 @@ const content = (name) => query(`.content--${name}`);
 
 onDomLoaded(() => {
   attachTextToElements(queryAll('[data-text]'));
+  document.body.classList.add('ready');
+  setTimeout(() => {
+    removeElement(query('#loading'));
+  }, 400);
 
   const activeLinkName = activeLink().name;
   content(activeLinkName).classList.add('active');
