@@ -3,12 +3,28 @@
 @import "header.less";
 @import "content.less";
 
-body::-webkit-scrollbar {
-  width: 13px;
+h2, h3 {
+  margin: 0 0 20px 0;
 }
 
-body::-webkit-scrollbar-thumb {
-  background-color: lighten(@theme-black, 50%);
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+
+p {
+  font-size: 1.2em;
+  line-height: 1.8;
+}
+
+a {
+  font-family: sans-serif;
+  color: mix(blue, @theme-black);
+  letter-spacing: 2px;
 }
 
 button {
@@ -22,4 +38,5 @@ button {
 #root {
   margin: 0 auto;
   max-width: 1000px;
+  // height: 100%;
 }
