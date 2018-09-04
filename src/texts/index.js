@@ -34,3 +34,9 @@ export function attachTextToElements(elements) {
     }
   });
 }
+
+export function flushTexts() {
+  document.documentElement.lang = curLang.toLowerCase();
+  document.body.classList.add(`lang--${curLang}`);
+  attachTextToElements(document.querySelectorAll('[data-text]'));
+}
