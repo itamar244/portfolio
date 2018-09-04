@@ -2,17 +2,19 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Itamar Yatom</title>
     <link href="https://fonts.googleapis.com/css?family=Alef:400,700|Kosugi&amp;subset=hebrew" rel="stylesheet">
   </head>
 
   <body>
+    {{> loading }}
     <div id="root">
       {{> header }}
 
-      {{> about }}
-      {{> projects }}
-      {{> works }}
+      {{> pages/about }}
+      {{> pages/projects }}
+      {{> pages/works }}
     </div>
   </body>
 </html>
