@@ -1,13 +1,13 @@
 {{#*inline "header__link"}}
   <button
-    class="header__link {{#if active}}active{{/if}}"
+    class="header__link"
     data-text="header.{{page}}"
     name="{{page}}"
   ></button>
 {{/inline}}
 
 <header class="header">
-  {{>header__link page="about" active="true"}}
+  {{>header__link page="about"}}
   {{>header__link page="projects"}}
 
   <div class="logo">
