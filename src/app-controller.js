@@ -1,13 +1,12 @@
 import { query, queryAll } from './dom-utils';
 import { flushTexts } from './texts';
 import { guard } from './utils';
+import * as router from './router';
 
 const link = name => query(`.header__link[name=${name}]`);
 const links = () => queryAll('.header__link');
 const content = name => query(`.content--${name}`);
 const activeContent = () => query('.content.active');
-const curPage = () => location.hash.slice(1);
-
 
 export function init() {
   if (location.hash.length <= 1) {
@@ -16,13 +15,15 @@ export function init() {
 
   flushTexts();
 
-  setPage(curPage())
+  setPage(router.curPage())
 
   links().forEach(link => {
-    link.addEventListener('click', () => { moveToPage(link.name); });
+    link.addEventListener('click', () => {
+      router.moveToPage(link.name, setPage);
+    });
   });
 
-  window.addEventListener('popstate', event => { setPage(curPage()); })
+  router.listenToRouter(setPage);
 }
 
 export function setPage(next) {
@@ -33,12 +34,5 @@ export function setPage(next) {
       content.classList.remove('active');
     })
     content(next).classList.add('active');
-  }
-}
-
-export function moveToPage(next) {
-  if (next !== curPage()) {
-    history.pushState({}, '', `#${next}`);
-    setPage(next);
   }
 }
