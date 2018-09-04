@@ -1,10 +1,20 @@
+{{#*inline "github-link"}}
+  <a href="https://github.com/itamar244{{repo}}" target="_blank">
+    {{text}}
+  </a>
+{{/inline}}
+
 {{#> _page name="projects" }}
   <div class="content__info">
     <h2 data-text="header.projects"></h2>
     <p>
       <span>My github profile</span>
       -
-      <a href="https://github.com/itamar244">itamar244 (Itamar Yatom)</a>.
+      {{> github-link text="itamar244 (Itamar Yatom)" }}
+    </p>
+
+    <p>
+      {{> github-link repo="/portfolio" text="This website sources" }}
     </p>
   </div>
 {{/_page}}
