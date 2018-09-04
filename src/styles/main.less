@@ -1,6 +1,15 @@
 @import "~normalize.css";
-@import "_mixins.less";
+@import "_variables.less";
 @import "header.less";
+@import "content.less";
+
+body::-webkit-scrollbar {
+  width: 13px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: lighten(@theme-black, 50%);
+}
 
 button {
   cursor: pointer;
@@ -13,44 +22,4 @@ button {
 #root {
   margin: 0 auto;
   max-width: 1000px;
-}
-
-.content {
-  font-family: "Alef";
-  // display: flex;
-  padding: 50px 20px;
-
-  &:not(.active) {
-    display: none;
-  }
-
-  &__info {
-    flex-grow: 1;
-
-    h2, h3 {
-      margin: 40px 0 20px 0;
-    }
-
-    h2 {
-      font-size: 2em;
-    }
-
-    h3 {
-      font-size: 1.5em;
-    }
-
-
-    p {
-      font-size: 1.2em;
-      line-height: 1.8;
-    }
-  }
-
-  &__image {
-    .square(300px);
-    margin: 30px;
-    shape-outside: circle();
-    clip-path: circle();
-    float: right;
-  }
 }
