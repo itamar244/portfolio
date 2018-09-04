@@ -3,6 +3,9 @@ import * as app from './app-controller';
 
 import './styles/main.less';
 
+if (module.hot) {
+  module.hot.accept(app.init);
+}
 
 onDomLoaded(() => {
   document.body.classList.add('ready');

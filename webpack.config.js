@@ -1,6 +1,7 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = (env = 'none') => {
   const CSS_LOADERS = ['css-loader', 'less-loader'];
@@ -8,6 +9,12 @@ module.exports = (env = 'none') => {
   const config = {
     mode: env,
     entry: './src/index.js',
+
+    devtool: env === 'development' ? 'source-map' : 'none',
+
+    devServer: {
+      hot: env === 'development',
+    },
 
     module: {
       rules: [
@@ -44,6 +51,10 @@ module.exports = (env = 'none') => {
     }));
   } else {
     CSS_LOADERS.unshift('style-loader');
+  }
+
+  if (env === 'development') {
+    config.plugins.push(new webpack.HotModuleReplacementPlugin());
   }
 
   return config;
