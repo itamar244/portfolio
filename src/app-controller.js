@@ -8,29 +8,25 @@ const getLinks = () => queryAll('.header__link');
 const getContent = name => query(`.content--${name}`);
 const getActiveContent = () => query('.content.active');
 
-
-function setPage() {
+export default function initApp() {
   const router = new Router({
     defaultPage: 'about',
     defaultParams: { lang: 'EN' },
-    onPageChange: setPage,
+    initFirstRoute: true,
+    onRouteChange: route => {
+      const link = getLink(route);
+
+      if (link != null) {
+        guard(getActiveContent(), content => {
+          content.classList.remove('active');
+        });
+        getContent(route).classList.add('active');
+      }
+    },
   });
 
-  const link = getLink(router.page);
-
-  if (link != null) {
-    guard(getActiveContent(), content => {
-      content.classList.remove('active');
-    });
-    getContent(router.page).classList.add('active');
-  }
-}
-
-export default function initApp() {
   changeLanguage(router.params.lang);
   flushTexts();
-
-  setPage(router.page);
 
   getLinks().forEach(link => {
     link.addEventListener('click', () => {

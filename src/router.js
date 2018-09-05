@@ -8,10 +8,14 @@ export default class Router {
       this.flushData_();
       this.emit_();
     });
+
+    if (options.initFirstRoute) {
+      this.emit_();
+    }
   }
 
-  get page() {
-    return this.page_ !== '' ? this.page_ : this.options_.defaultPage;
+  get route() {
+    return this.route_ !== '' ? this.route_ : this.options_.defaultPage;
   }
 
   get params() {
@@ -20,13 +24,13 @@ export default class Router {
   }
 
   move(next, force = false) {
-    if (next !== this.page || force) {
+    if (next !== this.route || force) {
       history.pushState(
         {},
         '',
         `#${next}${this.query_ !== '' ? `?${this.query_}` : ''}`,
       );
-      this.page_ = next;
+      this.route_ = next;
       this.emit_();
     }
   }
@@ -43,25 +47,25 @@ export default class Router {
       this.query_ += `${this.query_.length > 0 ? '&' : ''}${key}=${value}`;
     }
 
-    this.move(this.page_,  true);
+    this.move(this.route_,  true);
   }
 
   emit_() {
-    if (this.options_.onPageChange != null) {
-      this.options_.onPageChange();
+    if (this.options_.onRouteChange != null) {
+      this.options_.onRouteChange(this.route);
     }
   }
 
   flushData_() {
     const { hash } = location;
-    const pageItems = hash.split('?', 2);
+    const routeItems = hash.split('?', 2);
 
-    this.page_ = pageItems[0].slice(1);
-    this.query_ = pageItems[1] || '';
+    this.route_ = routeItems[0].slice(1);
+    this.query_ = routeItems[1] || '';
     this.params_ = {};
 
-    if (pageItems.length === 2) {
-      const slices = pageItems[1].split('&');
+    if (routeItems.length === 2) {
+      const slices = routeItems[1].split('&');
       for (let i = 0; i < slices.length; i++) {
         const items = slices[i].split('=', 2);
         this.params_[items[0]] = items[1];
