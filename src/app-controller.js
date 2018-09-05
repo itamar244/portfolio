@@ -1,38 +1,46 @@
 import { query, queryAll } from './dom-utils';
-import { flushTexts } from './texts';
+import { changeLanguage, flushTexts, getCurLanguage } from './texts';
 import { guard } from './utils';
-import * as router from './router';
+import Router from './router';
 
-const link = name => query(`.header__link[name=${name}]`);
-const links = () => queryAll('.header__link');
-const content = name => query(`.content--${name}`);
-const activeContent = () => query('.content.active');
+const getLink = name => query(`.header__link[name=${name}]`);
+const getLinks = () => queryAll('.header__link');
+const getContent = name => query(`.content--${name}`);
+const getActiveContent = () => query('.content.active');
 
-export function init() {
-  if (location.hash.length <= 1) {
-    location.href += '/#about';
+
+function setPage() {
+  const router = new Router({
+    defaultPage: 'about',
+    defaultParams: { lang: 'EN' },
+    onPageChange: setPage,
+  });
+
+  const link = getLink(router.page);
+
+  if (link != null) {
+    guard(getActiveContent(), content => {
+      content.classList.remove('active');
+    });
+    getContent(router.page).classList.add('active');
   }
+}
 
+export default function initApp() {
+  changeLanguage(router.params.lang);
   flushTexts();
 
-  setPage(router.curPage())
+  setPage(router.page);
 
-  links().forEach(link => {
+  getLinks().forEach(link => {
     link.addEventListener('click', () => {
-      router.moveToPage(link.name, setPage);
+      router.move(link.name);
     });
   });
 
-  router.listenToRouter(setPage);
-}
-
-export function setPage(next) {
-  const link = query(`.header__link[name=${next}]`);
-
-  if (link != null) {
-    guard(activeContent(), content => {
-      content.classList.remove('active');
-    })
-    content(next).classList.add('active');
-  }
+  query('#language-select').addEventListener('click', () => {
+    const nextLanguage = getCurLanguage() === 'EN' ? 'HE' : 'EN';
+    router.setParam('lang', nextLanguage);
+    changeLanguage(nextLanguage);
+  });
 }
