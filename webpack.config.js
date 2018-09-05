@@ -1,3 +1,4 @@
+const { resolve } = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -25,6 +26,9 @@ module.exports = (env = 'none') => {
         {
           test: /\.hbs$/,
           loader: 'handlebars-loader',
+          options: {
+            partialDirs: resolve('./src/components/'),
+          },
         },
         {
           type: 'json',
