@@ -15,17 +15,27 @@
 
   &__item {
     margin-top: 40px;
+
+    &--flex {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__item--flex > &__image {
+    width: auto;
+    max-height: 200px;
   }
 
   &__image {
-    .square(300px);
-    shape-outside: circle();
-    clip-path: circle();
-    float: right;
-    margin-left: 30px;
+    width: 300px;
+
+    &--circle {
+      shape-outside: circle();
+      clip-path: circle();
+    }
   }
 }
-
 
 @keyframes reveal {
   from { opacity: 0; }

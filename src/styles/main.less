@@ -22,6 +22,7 @@ p {
 }
 
 a {
+  text-decoration: none;
   font-family: sans-serif;
   color: mix(blue, @theme-black);
   letter-spacing: 2px;
@@ -39,4 +40,12 @@ button {
   margin: 0 auto;
   max-width: 1000px;
   // height: 100%;
+}
+
+[dir="ltr"] .float-end {
+  float: right;
+}
+
+[dir="rtl"] .float-end {
+  float: left;
 }
