@@ -1,6 +1,8 @@
 import { onDomLoaded, query, queryAll, removeElement } from './dom-utils';
 import initApp from './app-controller';
 
+import './elements';
+
 import './styles/main.less';
 
 if (module.hot) {
