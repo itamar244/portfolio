@@ -5,6 +5,10 @@
   "author": "itamar244 <itamary24@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "dev": "webpack-dev-server --env=development",
+    "build": "webpack --env=production"
+  },
   "devDependencies": {
     "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^1.0.0",

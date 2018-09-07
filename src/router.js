@@ -10,7 +10,9 @@ export default class Router {
     });
 
     if (options.initFirstRoute) {
-      this.emit_();
+      setTimeout(() => {
+        this.emit_();
+      });
     }
   }
 
@@ -71,6 +73,5 @@ export default class Router {
         this.params_[items[0]] = items[1];
       }
     }
-
   }
 }

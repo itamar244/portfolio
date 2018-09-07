@@ -11,10 +11,9 @@ if (module.hot) {
 
 onDomLoaded(() => {
   document.body.classList.add('ready');
+  initApp();
 
   setTimeout(() => {
     removeElement(query('#loading'));
   }, 400);
-
-  initApp();
 });

@@ -1,10 +1,15 @@
 import { isObject } from '../utils';
-// force joinin the EN data to the main build
-import './EN.yaml';
-import './HE.yaml';
 
-let curLang = 'EN';
+const LANGUAGES = {
+  'EN': 'ltr',
+  'HE': 'rtl',
+};
 const TEXTS = {};
+let curLang = 'EN';
+
+export function getCurLanguage() {
+  return curLang;
+}
 
 export function getText(path) {
   const paths = path.split('.');
@@ -19,26 +24,22 @@ export function getText(path) {
 
 export function loadCurLang(maybeCallback) {
   if (!(curLang in TEXTS)) {
-    return import(`./${curLang}.yaml`).then(module => {
-      TEXTS[curLang] = module.default;
-    });
+    TEXTS[curLang] = require(`./${curLang}.yaml`);
   }
-
-  return Promise.resolve();
 }
 
 export function attachTextToElements(elements) {
-  loadCurLang().then(() => {
-    for (let i = 0; i < elements.length; i++) {
-      const element = elements[i];
-      element.textContent = getText(element.dataset.text);
-    }
-  });
+  loadCurLang();
+  for (let i = 0; i < elements.length; i++) {
+    const element = elements[i];
+    element.textContent = getText(element.dataset.text);
+  }
 }
 
 export function flushTexts() {
   document.documentElement.lang = curLang.toLowerCase();
   document.body.classList.add(`lang--${curLang}`);
+  document.documentElement.dir = LANGUAGES[curLang];
   attachTextToElements(document.querySelectorAll('[data-text]'));
 }
 
