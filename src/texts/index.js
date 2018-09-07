@@ -1,6 +1,7 @@
 import { isObject } from '../utils';
 // force joinin the EN data to the main build
 import './EN.yaml';
+import './HE.yaml';
 
 let curLang = 'EN';
 const TEXTS = {};

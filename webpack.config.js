@@ -2,6 +2,7 @@ const { resolve } = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = (env = 'none') => {
@@ -53,6 +54,7 @@ module.exports = (env = 'none') => {
     config.plugins.push(new MiniCssExtractPlugin({
       filename: 'styles.css',
     }));
+    config.plugins.push(new OptimizeCssAssetsPlugin());
   } else {
     CSS_LOADERS.unshift('style-loader');
   }
