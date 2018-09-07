@@ -41,3 +41,8 @@ export function flushTexts() {
   document.body.classList.add(`lang--${curLang}`);
   attachTextToElements(document.querySelectorAll('[data-text]'));
 }
+
+export function setLanguage(next) {
+  curLang = next;
+  flushTexts();
+}

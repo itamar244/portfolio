@@ -1,12 +1,12 @@
 import { query, queryAll } from './dom-utils';
-import { changeLanguage, flushTexts, getCurLanguage } from './texts';
+import { attachTextToElements, setLanguage, getCurLanguage } from './texts';
 import { guard } from './utils';
 import Router from './router';
 
 const getLink = name => query(`.header__link[name=${name}]`);
 const getLinks = () => queryAll('.header__link');
-const getContent = name => query(`.content--${name}`);
-const getActiveContent = () => query('.content.active');
+const getContent = () => query('.content');
+const getPageTemplate = page => query(`#page-${page}`);
 
 export default function initApp() {
   const router = new Router({
@@ -14,19 +14,20 @@ export default function initApp() {
     defaultParams: { lang: 'EN' },
     initFirstRoute: true,
     onRouteChange: route => {
-      const link = getLink(route);
+      const content = getContent();
+      const newContent = getPageTemplate(route).content.cloneNode(true);
 
-      if (link != null) {
-        guard(getActiveContent(), content => {
-          content.classList.remove('active');
-        });
-        getContent(route).classList.add('active');
+      attachTextToElements(queryAll('[data-text]', newContent));
+
+      if (content !== null) {
+        content.parentElement.replaceChild(newContent, content);
+      } else {
+        query('#root').appendChild(newContent);
       }
     },
   });
 
-  changeLanguage(router.params.lang);
-  flushTexts();
+  setLanguage(router.params.lang);
 
   getLinks().forEach(link => {
     link.addEventListener('click', () => {
@@ -37,6 +38,6 @@ export default function initApp() {
   query('#language-select').addEventListener('click', () => {
     const nextLanguage = getCurLanguage() === 'EN' ? 'HE' : 'EN';
     router.setParam('lang', nextLanguage);
-    changeLanguage(nextLanguage);
+    setLanguage(nextLanguage);
   });
 }
