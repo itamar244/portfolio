@@ -1,12 +1,12 @@
 import { query, queryAll } from './dom-utils';
-import { attachTextToElements, setLanguage, getCurLanguage } from './texts';
+import { setLanguage, getCurLanguage } from './texts';
 import { guard } from './utils';
 import Router from './router';
 
 const getLink = name => query(`.header__link[name=${name}]`);
 const getLinks = () => queryAll('.header__link');
-const getContent = () => query('.content');
-const getPageTemplate = page => query(`#page-${page}`);
+const getContent = name => query(`.content--${name}`);
+const getActiveContent = () => query('.content.active');
 
 export default function initApp() {
   const router = new Router({
@@ -14,15 +14,13 @@ export default function initApp() {
     defaultParams: { lang: 'EN' },
     initFirstRoute: true,
     onRouteChange: route => {
-      const content = getContent();
-      const newContent = getPageTemplate(route).content.cloneNode(true);
+      const link = getLink(route);
 
-      attachTextToElements(queryAll('[data-text]', newContent));
-
-      if (content !== null) {
-        content.parentElement.replaceChild(newContent, content);
-      } else {
-        query('#root').appendChild(newContent);
+      if (link != null) {
+        guard(getActiveContent(), content => {
+          content.classList.remove('active');
+        });
+        getContent(route).classList.add('active');
       }
     },
   });
