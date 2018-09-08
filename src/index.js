@@ -7,20 +7,9 @@ if (module.hot) {
   module.hot.accept(initApp);
 }
 
-const elementsLoadPromise = new Promise(resolve => {
-  if (!('CustomElementRegistry' in window)) {
-    import('@webcomponents/custom-elements').then(() => {
-      import(/* webpackMode: 'eager' */'./elements').then(resolve);
-      resolve();
-    });
-  } else {
-    import(/* webpackMode: 'eager' */'./elements').then(resolve);
-  }
-});
-
 onDomLoaded(() => {
   document.body.classList.add('ready');
-  elementsLoadPromise.then(initApp);
+  initApp();
 
   setTimeout(() => {
     removeElement(query('#loading'));

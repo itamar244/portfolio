@@ -15,9 +15,11 @@
     <p>
       <span>My github profile</span>
       -
-       <iy-github-link>itamar244 (Itamar Yatom)</iy-github-link>
+      {{> github-link text="itamar244 (Itamar Yatom)" }}
     </p>
 
-    <iy-github-link href="/portfolio"><p>This website repository</p></iy-github-link>
+    <p>
+      {{> github-link repo="/portfolio" text="This website sources" }}
+    </p>
   </div>
 {{/page}}
