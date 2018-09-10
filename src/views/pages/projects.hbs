@@ -1,6 +1,14 @@
 {{#> page name="projects" }}
   <h2 data-text="header.projects"></h2>
 
+  <div class="content__item">
+    <h3>{{> github-link text="ARITHMETIC EVALUATOR" repo="/arithmetic-evaluator" }}</h3>
+    <p>
+      An arithmetic expressions evaluator that became a tiny language that i built.<br/>
+    </p>
+    <button id="open-ari">TRY ME</button>
+  </div>
+
   <div class="content__item content__item--flex">
     <div>
         <h3>
@@ -23,3 +31,20 @@
     </p>
   </div>
 {{/page}}
+
+<template id="repl-template">
+  <div class="repl-container">
+    <div class="repl">
+      <button class="repl__close">X</button>
+      <div class="repl__wrapper">
+        <pre class="repl__history"></pre>
+        <p class="repl__input-wrapper">
+          &gt;
+          <input class="repl__input" type="text">
+        </p>
+      </div>
+    </div>
+
+    <div class="repl__background"></div>
+  </div>
+</template>

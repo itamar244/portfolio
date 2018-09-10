@@ -255,6 +255,10 @@ argparse@^1.0.7:
   dependencies:
     sprintf-js "~1.0.2"
 
+ari-math@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ari-math/-/ari-math-1.0.2.tgz#a4dcca30c25a03100b2657d89ffa115b08b5c96f"
+
 arr-diff@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/arr-diff/-/arr-diff-4.0.0.tgz#d6461074febfec71e7e15235761a329a5dc7c520"

@@ -34,6 +34,12 @@ export default function initApp() {
     });
   });
 
+  query('#open-ari').addEventListener('click', () => {
+    import('./ari-repl').then(module => {
+      module.default();
+    });
+  });
+
   // query('#language-select').addEventListener('click', () => {
   //   const nextLanguage = getCurLanguage() === 'EN' ? 'HE' : 'EN';
   //   router.setParam('lang', nextLanguage);

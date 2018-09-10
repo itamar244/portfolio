@@ -43,3 +43,17 @@ export function onDomLoaded(callback) {
     });
   }
 }
+
+export function on(_elements, type, listener) {
+  const elements = Array.isArray(_elements) ? _elements : [_elemenets];
+
+  for (let i = 0; i < elements.length; i++) {
+    elements[i].addEventListener(type, listener);
+  }
+
+  return () => {
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].removeEventListener(type, listener);
+    }
+  };
+}
