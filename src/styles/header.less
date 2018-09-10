@@ -7,13 +7,12 @@
   font-family: "Kosugi", "Alef", sans-serif;
   text-align: center;
   width: 100%;
-  position: relative;
   z-index: 2;
   background-color: white;
 
   @media @device-mobile {
+    position: relative;
     height: 100vh;
-    box-sizing: content-box;
     box-shadow: 3px 3px 10px 1px lighten(@theme-black, 80%);
   }
 
@@ -111,24 +110,26 @@
   }
 
   // ---------------------------------- fixed ----------------------------------
-  &.fixed {
-    width: 100%;
-    bottom: calc(100% - @fixed-header-height);
-  }
+  @media @device-desktop {
+    &.fixed {
+      width: 100%;
+      bottom: calc(100% - @fixed-header-height);
+    }
 
-  &.fixed > &__logo,
-  &.fixed > &__title,
-  &.fixed > &__nav {
-    bottom: 0;
-  }
+    &.fixed > &__logo,
+    &.fixed > &__title,
+    &.fixed > &__nav {
+      bottom: 0;
+    }
 
-  &.fixed > &__logo {
-    .square(100px);
-  }
+    &.fixed > &__logo {
+      .square(100px);
+    }
 
-  &.fixed > &__title {
-    opacity: 0;
-    animation: disappear (@to-fixed-animation-length / 2) linear;
+    &.fixed > &__title {
+      opacity: 0;
+      animation: disappear (@to-fixed-animation-length / 2) linear;
+    }
   }
 }
 

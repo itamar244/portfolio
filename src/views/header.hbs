@@ -16,17 +16,17 @@
 {{/inline}}
 
 <header class="header">
+  {{!-- the logo is last to make it with the heighest z-index of the .header children --}}
+  <div class="header__logo">
+    {{> logo }}
+  </div>
+
   <h1 class="header__title">ITAMAR YATOM</h1>
 
   <nav class="header__nav">
     {{> header__link page="about" }}
     {{> header__link page="projects" }}
   </nav>
-
-  {{!-- the logo is last to make it with the heighest z-index of the .header children --}}
-  <div class="header__logo">
-    {{> logo }}
-  </div>
 
 
   <div class="header__scroll-tip">
