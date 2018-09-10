@@ -1,12 +1,16 @@
 @import "_mixins.less";
+@import "_variables.less";
 
 .content {
   font-family: "Alef";
-  margin-top: 50px;
-  padding: 0 20px;
+  padding: 40px 20px;
 
-  &:not(.active) {
-    display: none;
+  @media @device-desktop {
+    padding-top: calc(@fixed-header-height + 50px);
+
+    &:not(.active) {
+      display: none;
+    }
   }
 
   &__wrapper {
@@ -20,9 +24,11 @@
   &__item {
     margin-top: 40px;
 
-    &--flex {
-      display: flex;
-      justify-content: space-between;
+    @media @device-desktop {
+      &--flex {
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
 
