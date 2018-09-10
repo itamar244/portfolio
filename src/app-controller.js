@@ -9,12 +9,16 @@ const getContent = name => query(`.content--${name}`);
 const getActiveContent = () => query('.content.active');
 
 export default function initApp() {
+  const header = query('.header');
   const router = new Router({
     defaultPage: '',
     defaultParams: { lang: 'EN' },
     initFirstRoute: true,
-    onRouteChange: route => {
-      query('.header').classList.toggle('fixed', route !== '');
+    onRouteChange: (route, isFirstRoute = true) => {
+      if (!isFirstRoute) {
+        header.classList.add('animate');
+      }
+      header.classList.toggle('fixed', route !== '');
 
       guard(getActiveContent(), content => {
         content.classList.remove('active');

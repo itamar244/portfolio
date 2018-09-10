@@ -11,7 +11,7 @@ export default class Router {
 
     if (options.initFirstRoute) {
       setTimeout(() => {
-        this.emit_();
+        this.emit_(true);
       });
     }
   }
@@ -52,9 +52,9 @@ export default class Router {
     this.move(this.route_,  true);
   }
 
-  emit_() {
+  emit_(isFirstRoute) {
     if (this.options_.onRouteChange != null) {
-      this.options_.onRouteChange(this.route);
+      this.options_.onRouteChange(this.route, !!isFirstRoute);
     }
   }
 

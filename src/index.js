@@ -8,10 +8,11 @@ if (module.hot) {
 }
 
 onDomLoaded(() => {
-  document.body.classList.add('ready');
+  // location.hash = '';
   initApp();
+  document.body.classList.add('ready');
 
   setTimeout(() => {
-    removeElement(query('#loading'));
+    query('#loading').remove();
   }, 400);
 });

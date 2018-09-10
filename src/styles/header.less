@@ -20,7 +20,10 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    transition: bottom @to-fixed-animation-length;
+
+    &.animate {
+      transition: bottom @to-fixed-animation-length;
+    }
   }
 
   & [data-route] {
@@ -31,17 +34,34 @@
   &__title,
   &__nav {
     position: absolute;
-    transition: bottom @to-fixed-animation-length;
+
+    .header.animate {
+      transition: bottom @to-fixed-animation-length;
+    }
   }
 
   &__logo { bottom: 60%; }
   &__title { bottom: 25%; }
   &__nav { bottom: 15%; }
 
+  // @media @device-mobile and (orientation: landscape) {
+  //   &__logo,
+  //   &__title {
+  //     bottom: auto;
+  //   }
+  //
+  //   &__logo { right: 60%; }
+  //   &__title { right: 25%; }
+  //   &__scroll-tip { right: 15%; }
+  // }
+
   &__logo {
     .square(150px);
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  &.animate > &__logo {
     transition-property: height, width, bottom;
     transition-duration: @to-fixed-animation-length;
   }
@@ -124,10 +144,15 @@
 
     &.fixed > &__logo {
       .square(100px);
+      // for smoother bottom positioning
+      transition-timing-function: ease-in-out;
     }
 
     &.fixed > &__title {
       opacity: 0;
+    }
+
+    &.fixed.animate > &__title {
       animation: disappear (@to-fixed-animation-length / 2) linear;
     }
   }
