@@ -4,18 +4,19 @@ import { guard } from './utils';
 import Router from './router';
 
 const getLink = name => query(`.header [data-route=${name}]`);
-const getLinks = () => queryAll('.header [data-route]');
 const getContent = name => query(`.content--${name}`);
 const getActiveContent = () => query('.content.active');
 
 export default function initApp() {
   const header = query('.header');
+  const links = queryAll('.header [data-route]');
+
   const router = new Router({
     defaultPage: '',
     defaultParams: { lang: 'EN' },
     initFirstRoute: true,
-    onRouteChange: (route, isFirstRoute = true) => {
-      if (!isFirstRoute) {
+    onRouteChange: (route, prevRoute, isFirstRoute = true) => {
+      if (!isFirstRoute && (prevRoute === '' || route === '')) {
         header.classList.add('animate');
       }
       header.classList.toggle('fixed', route !== '');
@@ -29,10 +30,10 @@ export default function initApp() {
     },
   });
 
-  query('.header').classList.toggle('fixed', router.route !== '');
+  header.classList.toggle('fixed', router.route !== '');
   setLanguage(router.params.lang);
 
-  getLinks().forEach(link => {
+  links.forEach(link => {
     link.addEventListener('click', () => {
       router.move(link.dataset.route);
     });

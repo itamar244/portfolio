@@ -5,13 +5,14 @@ export default class Router {
     this.flushData_();
 
     window.addEventListener('popstate', () => {
+      const prevRoute = this.route;
       this.flushData_();
-      this.emit_();
+      this.emit_(prevRoute);
     });
 
     if (options.initFirstRoute) {
       setTimeout(() => {
-        this.emit_(true);
+        this.emit_(this.route, true);
       });
     }
   }
@@ -26,14 +27,15 @@ export default class Router {
   }
 
   move(next, force = false) {
-    if (next !== this.route || force) {
+    const currentRoute = this.route;
+    if (next !== currentRoute || force) {
       history.pushState(
         {},
         '',
         `#${next}${this.query_ !== '' ? `?${this.query_}` : ''}`,
       );
       this.route_ = next;
-      this.emit_();
+      this.emit_(currentRoute);
     }
   }
 
@@ -52,9 +54,9 @@ export default class Router {
     this.move(this.route_,  true);
   }
 
-  emit_(isFirstRoute) {
+  emit_(prevRoute, isFirstRoute) {
     if (this.options_.onRouteChange != null) {
-      this.options_.onRouteChange(this.route, !!isFirstRoute);
+      this.options_.onRouteChange(this.route, prevRoute, !!isFirstRoute);
     }
   }
 

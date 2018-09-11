@@ -8,7 +8,6 @@ if (module.hot) {
 }
 
 onDomLoaded(() => {
-  // location.hash = '';
   initApp();
   document.body.classList.add('ready');
 
