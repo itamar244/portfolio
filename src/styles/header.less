@@ -2,6 +2,7 @@
 @import "_variables.less";
 
 @to-fixed-animation-length: 0.3s;
+@root-padding: 20px;
 
 .header {
   font-family: "Kosugi", "Alef", sans-serif;
@@ -19,7 +20,10 @@
   @media @device-desktop {
     position: absolute;
     top: 0;
+    right: 0;
     bottom: 0;
+    left: 0;
+    box-sizing: border-box;
 
     &.animate {
       transition: bottom @to-fixed-animation-length;
@@ -35,7 +39,7 @@
   &__nav {
     position: absolute;
 
-    .header.animate {
+    .header.animate & {
       transition: bottom @to-fixed-animation-length;
     }
   }
@@ -83,12 +87,13 @@
   }
 
   &__nav {
-    width: 100%;
     display: none;
 
     @media @device-desktop {
+      left: @root-padding;
+      right: @root-padding;
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between;
     }
   }
 
@@ -96,7 +101,7 @@
     height: 50px;
     font-size: 28px;
     font-weight: 400;
-    width: 30%;
+    width: 35%;
     background-color: transparent;
     border: none;
     border-bottom: solid @theme-line-width @theme-black;
@@ -132,7 +137,6 @@
   // ---------------------------------- fixed ----------------------------------
   @media @device-desktop {
     &.fixed {
-      width: 100%;
       bottom: calc(100% - @fixed-header-height);
     }
 

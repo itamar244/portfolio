@@ -3,7 +3,11 @@
 
 .content {
   font-family: "Alef";
-  padding: 40px 20px;
+  box-sizing: border-box;
+
+  @media @device-mobile {
+    padding: 40px 20px;
+  }
 
   @media @device-desktop {
     padding-top: calc(@fixed-header-height + 50px);

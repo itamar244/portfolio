@@ -1,23 +1,33 @@
 {{#> page name="projects" }}
   <h2 data-text="header.projects"></h2>
 
-  <div class="content__item">
-    <h3>{{> github-link text="ARITHMETIC EVALUATOR" repo="/arithmetic-evaluator" }}</h3>
-    <p>
-      An arithmetic expressions evaluator that became a tiny language that i built.<br/>
-    </p>
-    <button id="open-ari">TRY ME</button>
-  </div>
-
-  <div class="content__item content__item--flex">
-    <div>
-      <h3>{{> github-link text="SYNTH" repo="/synth" }}</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  <div class="content__item cards-container" data-src="/images/project-synth.png">
+    <div class="card">
+      <div class="card__image">
+      </div>
+      <h3 class="card__title">{{> github-link text="ARITHMETIC EVALUATOR" repo="/arithmetic-evaluator" }}</h3>
+      <p class="card__description">
+        An arithmetic expressions evaluator that became a tiny language that i built.<br/>
+        <button class="card__button" id="open-ari">TRY IT</button>
+      </p>
     </div>
-    <img class="content__image" src="/images/project-synth.png">
+
+    <div class="card">
+      <div
+        class="card__image"
+        style="background-image: url(/images/project-synth.png)"
+      ></div>
+      <h3 class="card__title">
+        {{> github-link text="SYNTH" repo="/synth" }}
+      </h3>
+      <p class="card__description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      </p>
+    </div>
   </div>
 
-  <div class="content__item">
+
+  {{!-- <div class="content__item">
     <p>
       <span>My github profile</span>
       -
@@ -27,7 +37,7 @@
     <p>
       {{> github-link repo="/portfolio" text="This website sources" }}
     </p>
-  </div>
+  </div> --}}
 {{/page}}
 
 <template id="repl-template">

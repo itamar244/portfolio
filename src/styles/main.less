@@ -2,6 +2,7 @@
 @import "_variables.less";
 @import "logo.less";
 @import "header.less";
+@import "card.less";
 @import "content.less";
 @import "repl.less";
 
@@ -41,10 +42,25 @@ button {
 #root {
   font-family: 'Alef', sans-serif;
   position: relative;
-  top: 0;
   margin: 0 auto;
+  box-sizing: border-box;
   max-width: 1000px;
-  min-height: 100vh;
+
+  @media @device-mobile {
+    min-height: 100vh;
+  }
+
+  @media @device-desktop {
+    height: 100vh;
+    padding: 0 20px;
+  }
+}
+
+@media @device-mobile {
+  .float-end {
+    display: block;
+    margin: 0 auto;
+  }
 }
 
 @media @device-desktop {
@@ -54,12 +70,5 @@ button {
 
   [dir="rtl"] .float-end {
     float: left;
-  }
-}
-
-@media @device-mobile {
-  .float-end {
-    display: block;
-    margin: 0 auto;
   }
 }
