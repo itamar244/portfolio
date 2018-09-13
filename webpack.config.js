@@ -18,6 +18,13 @@ module.exports = (env = 'none') => {
       hot: env === 'development',
     },
 
+    resolveLoader: {
+      modules: [
+        'node_modules',
+        resolve('./loaders'),
+      ],
+    },
+
     module: {
       rules: [
         {
@@ -32,6 +39,10 @@ module.exports = (env = 'none') => {
           },
         },
         {
+          test: /\.jsx$/,
+          loader: 'jsx-to-string-loader',
+        },
+        {
           type: 'json',
           test: /\.yaml$/,
           loader: 'yaml-loader',
@@ -41,7 +52,7 @@ module.exports = (env = 'none') => {
 
     plugins: [
       new HTMLWebpackPlugin({
-        template: './src/views/index.hbs',
+        template: './src/views/index.jsx',
       }),
       new CopyWebpackPlugin([
         { from: './public', to: './' }
