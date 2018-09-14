@@ -1,5 +1,3 @@
-import styles from '../styles/header.less';
-
 const HeaderLink = ({ page }) =>
   <button
     class="header__link"
@@ -15,8 +13,8 @@ const Logo = () =>
     <h1 class="logo__text">IY</h1>
   </div>;
 
-const Header = () =>
-  <header class="header">
+const Header = ({ fixed }) =>
+  <header class={`header${fixed ? ' fixed' : ''}`}>
     <div class="header__logo">
       <Logo />
     </div>

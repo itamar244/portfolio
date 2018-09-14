@@ -25,6 +25,10 @@ module.exports = (env = 'none') => {
       ],
     },
 
+    resolve: {
+      extensions: ['.js', '.jsx'],
+    },
+
     module: {
       rules: [
         {
@@ -39,8 +43,12 @@ module.exports = (env = 'none') => {
           },
         },
         {
-          test: /\.jsx$/,
+          test: /\.template\.jsx$/,
           loader: 'jsx-to-string-loader',
+        },
+        {
+          test: /\.jsx$/,
+          loader: 'jsx-loader',
         },
         {
           type: 'json',
@@ -52,7 +60,7 @@ module.exports = (env = 'none') => {
 
     plugins: [
       new HTMLWebpackPlugin({
-        template: './src/views/index.jsx',
+        template: './src/views/index.template.jsx',
       }),
       new CopyWebpackPlugin([
         { from: './public', to: './' }
