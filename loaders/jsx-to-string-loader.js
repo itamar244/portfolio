@@ -1,8 +1,17 @@
-const { dirname, resolve } = require('path');
+const { dirname, resolve, extname } = require('path');
 const { readFileSync } = require('fs');
-const { transform } = require('@babel/core');
+const babel = require('@babel/core');
 const _eval = require('eval');
-const { renderToStaticMarkup } = require('react-dom/server');
+const { renderToStaticMarkup } = require('inferno-server');
+
+const transform = (code, filename) => babel.transform(code, {
+  filename,
+  babelrc: false,
+  plugins: [
+    'inferno',
+    'transform-es2015-modules-commonjs',
+  ],
+});
 
 module.exports = function jsxToStringLoader(source) {
   const evalWithRequire = (code, filepath, addDependency) => {
@@ -12,9 +21,14 @@ module.exports = function jsxToStringLoader(source) {
       require: (path) => {
         if (path[0] !== '.' && path[0] !== '/') return require(path);
 
-        const resolvedPath = resolve(dir, path) + '.jsx';
+        let resolvedPath = resolve(dir, path);
+
+        if (extname(path) === '') {
+          resolvedPath += '.jsx';
+        }
+
         const file = readFileSync(resolvedPath);
-        const transpiled = transform(file, { filename: resolvedPath });
+        const transpiled = transform(file, resolvedPath);
 
         this.addDependency(resolvedPath);
 
@@ -22,7 +36,7 @@ module.exports = function jsxToStringLoader(source) {
       },
     });
   };
-  const transpiled = transform(source, { filename: this.resourcePath });
+  const transpiled = transform(source, this.resourcePath);
   const module = evalWithRequire(transpiled.code, this.resourcePath);
   const html = module.__esModule === true ? module.default : module;
   const markup = renderToStaticMarkup(html);

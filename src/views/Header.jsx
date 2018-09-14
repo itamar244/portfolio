@@ -1,35 +1,35 @@
-import React from 'react';
+import styles from '../styles/header.less';
 
 const HeaderLink = ({ page }) =>
   <button
-    className="header__link"
+    class="header__link"
     data-text={`header.${page}`}
     data-route={page}
   />;
 
 const Logo = () =>
-  <div className="logo" data-route="">
-    <div className="logo__box">
-      <div className="logo__box--inner"></div>
+  <div class="logo" data-route="">
+    <div class="logo__box">
+      <div class="logo__box--inner"></div>
     </div>
-    <h1 className="logo__text">IY</h1>
+    <h1 class="logo__text">IY</h1>
   </div>;
 
 const Header = () =>
-  <header className="header">
-    <div className="header__logo">
+  <header class="header">
+    <div class="header__logo">
       <Logo />
     </div>
 
-    <h1 className="header__title">ITAMAR YATOM</h1>
+    <h1 class="header__title">ITAMAR YATOM</h1>
 
-    <nav className="header__nav">
+    <nav class="header__nav">
       <HeaderLink page="about" />
       <HeaderLink page="projects"/>
     </nav>
 
-    <div className="header__scroll-tip">
-      <svg className="header__scroll-tip__arrow">
+    <div class="header__scroll-tip">
+      <svg class="header__scroll-tip__arrow">
         <line x1="0%" x2="50%" y1="20%" y2="0%" stroke="currentColor" strokeWidth="2" />
         <line x1="50%" x2="100%" y1="0%" y2="20%" stroke="currentColor" strokeWidth="2" />
       </svg>

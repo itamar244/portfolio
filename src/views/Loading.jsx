@@ -1,6 +1,4 @@
-import React from 'react';
-
-const Loading = () =>
+export default () =>
   <div id="loading">
     <style type="text/css">{`
       #loading {
@@ -23,5 +21,3 @@ const Loading = () =>
       }
     `}</style>
   </div>;
-
-export default Loading;
