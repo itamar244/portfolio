@@ -9,7 +9,6 @@ if (module.hot) {
 
 onDomLoaded(() => {
   initApp();
-  document.body.classList.add('ready');
 
   setTimeout(() => {
     query('#loading').remove();

@@ -3,7 +3,7 @@ import Loading from './Loading';
 import About from './pages/About';
 import Projects from './pages/Projects';
 
-export default ({ children }) =>
+export default ({ page }) =>
   <html lang="en" dir="ltr">
     <head>
       <meta charset="utf-8" />
@@ -16,15 +16,12 @@ export default ({ children }) =>
     <body>
       <Loading />
       <div id="root">
-        <Header fixed={children != null} />
+        <Header fixed={page !== ''} />
 
         <main id="content-container">
-          <About />
-          <Projects />
+          <About active={page === 'about'} />
+          <Projects active={page === 'projects'} />
         </main>
       </div>
-
-      {/* <template id="page-about-template"><About /></template>
-      <template id="page-projects-template"><Projects /></template> */}
     </body>
   </html>;

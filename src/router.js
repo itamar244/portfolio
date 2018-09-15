@@ -18,7 +18,7 @@ export default class Router {
   }
 
   get route() {
-    return this.route_ !== '' ? this.route_ : this.options_.defaultPage;
+    return this.route_;
   }
 
   get params() {
@@ -32,7 +32,7 @@ export default class Router {
       history.pushState(
         {},
         '',
-        `#${next}${this.query_ !== '' ? `?${this.query_}` : ''}`,
+        `/${next}${next && '.html'}${this.query_ && `?${this.query_}`}`,
       );
       this.route_ = next;
       this.emit_(currentRoute);
@@ -61,10 +61,10 @@ export default class Router {
   }
 
   flushData_() {
-    const { hash } = location;
-    const routeItems = hash.split('?', 2);
+    const { pathname } = location;
+    const routeItems = pathname.split('?', 2);
 
-    this.route_ = routeItems[0].slice(1);
+    this.route_ = routeItems[0].slice(1).replace(/\.html$/, '');
     this.query_ = routeItems[1] || '';
     this.params_ = {};
 

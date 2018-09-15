@@ -1,17 +1,21 @@
-const HeaderLink = ({ page }) =>
-  <button
+import Text from './Text';
+
+const Link = ({ page, children }) =>
+  <Text
+    component="a"
     class="header__link"
-    data-text={`header.${page}`}
+    path={`header.${page}`}
     data-route={page}
-  />;
+    href={page + '.html'}
+  />
 
 const Logo = () =>
-  <div class="logo" data-route="">
+  <a class="logo" data-route="" href="/">
     <div class="logo__box">
       <div class="logo__box--inner"></div>
     </div>
     <h1 class="logo__text">IY</h1>
-  </div>;
+  </a>;
 
 const Header = ({ fixed }) =>
   <header class={`header${fixed ? ' fixed' : ''}`}>
@@ -22,8 +26,8 @@ const Header = ({ fixed }) =>
     <h1 class="header__title">ITAMAR YATOM</h1>
 
     <nav class="header__nav">
-      <HeaderLink page="about" />
-      <HeaderLink page="projects"/>
+      <Link page="about" />
+      <Link page="projects"/>
     </nav>
 
     <div class="header__scroll-tip">

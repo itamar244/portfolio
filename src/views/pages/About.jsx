@@ -1,16 +1,17 @@
 import Page from '../components/Page';
+import Text from '../Text';
 
-export default () =>
-  <Page name="about">
-    <h2 data-text="header.about" />
+export default (props) =>
+  <Page name="about" {...props}>
+    <Text component="h2" path="header.about" />
     <img class="content__image content__image--circle float-end" src="/images/selfie.jpeg" />
 
     <div class="content__item">
-      <p data-text="about-info.main" />
+      <Text path="about-info.main" />
     </div>
 
     <div class="content__item">
       <h3>Israel</h3>
-      <p data-text="about-info.second" />
+      <Text path="about-info.second" />
     </div>
   </Page>;

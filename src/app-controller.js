@@ -12,7 +12,6 @@ export default function initApp() {
   const links = queryAll('.header [data-route]');
 
   const router = new Router({
-    defaultPage: '',
     defaultParams: { lang: 'EN' },
     initFirstRoute: true,
     onRouteChange: (route, prevRoute, isFirstRoute = true) => {
@@ -34,8 +33,9 @@ export default function initApp() {
   setLanguage(router.params.lang);
 
   links.forEach(link => {
-    link.addEventListener('click', () => {
+    link.addEventListener('click', event => {
       router.move(link.dataset.route);
+      event.preventDefault();
     });
   });
 

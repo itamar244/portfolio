@@ -8,16 +8,8 @@ export default () =>
         bottom: 0;
         left: 0;
         background-color: white;
-        transition: opacity 0.4s;
+        transition: opacity 0.4s, z-index 0s 0.4s;
         z-index: 1000;
-      }
-
-      body {
-        overflow: hidden;
-      }
-
-      body.ready > #loading {
-        opacity: 0;
       }
     `}</style>
   </div>;

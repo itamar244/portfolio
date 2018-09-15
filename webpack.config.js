@@ -61,6 +61,15 @@ module.exports = (env = 'none') => {
     plugins: [
       new HTMLWebpackPlugin({
         template: './src/views/index.template.jsx',
+        filename: 'index.html',
+      }),
+      new HTMLWebpackPlugin({
+        template: './src/views/about.template.jsx',
+        filename: 'about.html',
+      }),
+      new HTMLWebpackPlugin({
+        template: './src/views/projects.template.jsx',
+        filename: 'projects.html',
       }),
       new CopyWebpackPlugin([
         { from: './public', to: './' }
