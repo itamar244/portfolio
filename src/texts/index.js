@@ -22,7 +22,7 @@ export function getText(path) {
   return typeof value === 'string' ? value : '';
 }
 
-export function loadCurLang(maybeCallback) {
+export function loadCurLang() {
   if (!(curLang in TEXTS)) {
     TEXTS[curLang] = require(`./${curLang}.yaml`);
   }

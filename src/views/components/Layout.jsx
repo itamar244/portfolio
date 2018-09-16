@@ -1,7 +1,7 @@
 import Header from './Header';
 import Loading from './Loading';
-import About from './pages/About';
-import Projects from './pages/Projects';
+import About from '../pages/About';
+import Projects from '../pages/Projects';
 
 export default ({ page }) =>
   <html lang="en" dir="ltr">
