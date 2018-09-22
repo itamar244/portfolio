@@ -21,9 +21,13 @@ module.exports = ({ types: t }) => {
 
       ExportDefaultDeclaration({ node }) {
         calledRenderToStaticMarkup = true;
-        node.declaration = t.CallExpression(
-          t.Identifier('renderToStaticMarkup'),
-          [node.declaration],
+        node.declaration = t.BinaryExpression(
+          '+',
+          t.StringLiteral('<!DOCTYPE html>'),
+          t.CallExpression(
+            t.Identifier('renderToStaticMarkup'),
+            [node.declaration],
+          ),
         );
       },
     },

@@ -4,7 +4,11 @@ import Text from '../components/Text';
 export default props =>
   <Page name="about" {...props}>
     <Text component="h2" path="header.about" />
-    <img class="content__image content__image--circle float-end" src="/images/selfie.jpeg" />
+    <img
+      class="content__image content__image--circle float-end"
+      src="/images/selfie.jpeg"
+      alt="selfie"
+    />
 
     <div class="content__item">
       <Text path="about-info.main" />

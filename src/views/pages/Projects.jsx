@@ -1,6 +1,6 @@
 import Page from '../components/Page';
 import GithubLink from '../components/GithubLink';
-import Text from '../component/Text';
+import Text from '../components/Text';
 
 const FittedImage = ({ src }) =>
   <div
