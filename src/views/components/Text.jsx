@@ -6,5 +6,5 @@ loadCurLang();
 export default ({
   component: Tag = 'p',
   path,
-  ...props,
+  ...props
 }) => createElement(Tag, { 'data-text': path, ...props }, getText(path));
