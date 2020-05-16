@@ -3,7 +3,7 @@ import Text from '../components/Text';
 
 export default props =>
   <Page name="about" {...props}>
-    <Text component="h2" path="header.about" />
+    <Page.Title textPath="header.about" />
     <img
       class="content__image content__image--circle float-end"
       src="/images/selfie.jpeg"
@@ -15,7 +15,7 @@ export default props =>
     </div>
 
     <div class="content__item">
-      <h3>Israel</h3>
+      <Page.Title textPath="about-info.whereabouts-title" small />
       <Text path="about-info.second" />
     </div>
   </Page>;

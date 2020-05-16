@@ -2,14 +2,16 @@
 
 .logo {
   .square(inherit);
+  color: @theme-secondary-color;
 
   &__box, &__box--inner {
     position: relative;
-    border: solid @theme-line-width @theme-black;
+    border: solid @theme-line-width @theme-secondary-color;
     box-sizing: border-box;
   }
 
   &__box {
+    display: block;
     .square(100%);
     border-radius: 10px;
     transform: rotate(45deg);

@@ -6,8 +6,9 @@
 @import "content.less";
 @import "repl.less";
 
-#root {
-  color: @theme-black;
+body {
+  color: @theme-color;
+  background: @theme-background;
 }
 
 h2, h3 {
@@ -31,12 +32,13 @@ p {
 a {
   text-decoration: none;
   font-family: sans-serif;
-  color: mix(blue, @theme-black);
+  color: mix(blue, @theme-color);
   letter-spacing: 2px;
 }
 
 button {
   cursor: pointer;
+  color: inherit;
 
   &:focus {
     outline: none;

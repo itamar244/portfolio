@@ -9,12 +9,12 @@
   text-align: center;
   width: 100%;
   z-index: 2;
-  background-color: white;
+  background-color: inherit;
 
   @media @device-mobile {
     position: relative;
     height: 100vh;
-    box-shadow: 3px 3px 10px 1px lighten(@theme-black, 80%);
+    box-shadow: 3px 3px 10px 1px lighten(@theme-color, 80%);
   }
 
   @media @device-desktop {
@@ -32,7 +32,6 @@
 
   [data-route] {
     cursor: pointer;
-    color: inherit;
     font-family: inherit;
     letter-spacing: initial;
   }
@@ -47,20 +46,10 @@
     }
   }
 
+  
   &__logo { bottom: 60%; }
   &__title { bottom: 25%; }
   &__nav { bottom: 15%; }
-
-  // @media @device-mobile and (orientation: landscape) {
-  //   &__logo,
-  //   &__title {
-  //     bottom: auto;
-  //   }
-  //
-  //   &__logo { right: 60%; }
-  //   &__title { right: 25%; }
-  //   &__scroll-tip { right: 15%; }
-  // }
 
   &__logo {
     .square(150px);
@@ -107,13 +96,14 @@
     width: 35%;
     background-color: transparent;
     border: none;
-    border-bottom: solid @theme-line-width @theme-black;
+    color: @theme-secondary-color;
+    border-bottom: solid @theme-line-width @theme-secondary-color;
   }
 
   &__scroll-tip {
   	height: 60px;
   	padding: 6px;
-  	border: 2px solid @theme-black;
+  	border: 2px solid @theme-color;
   	border-radius: 15px;
   	position: absolute;
   	right: 50%;
@@ -126,7 +116,7 @@
 
     &__arrow {
       line-height: 0.5;
-      color: @theme-black;
+      color: @theme-color;
       width: 20px;
       height: 80%;
       animation: move-arrow-down 1.5s ease-in-out infinite;

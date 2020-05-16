@@ -1,6 +1,5 @@
 import Page from '../components/Page';
 import GithubLink from '../components/GithubLink';
-import Text from '../components/Text';
 
 const FittedImage = ({ src }) =>
   <div
@@ -10,7 +9,7 @@ const FittedImage = ({ src }) =>
 
 export default props =>
   <Page name="projects" {...props}>
-    <Text component="h2" path="header.projects" />
+    <Page.Title textPath="header.projects" />
 
     <div class="content__item cards-container" data-src="/images/project-synth.png">
       <div class="card">

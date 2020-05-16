@@ -1,6 +1,6 @@
 import Text from './Text';
 
-const Link = ({ page, children }) =>
+const Link = ({ page }) =>
   <Text
     component="a"
     class="header__link"
@@ -10,12 +10,12 @@ const Link = ({ page, children }) =>
   />
 
 const Logo = () =>
-  <a class="logo" data-route="" href="/">
-    <div class="logo__box">
+  <div class="logo" data-route="" href="/">
+    <a class="logo__box" data-route="" href="/">
       <div class="logo__box--inner"></div>
-    </div>
+    </a>
     <h1 class="logo__text">IY</h1>
-  </a>;
+  </div>;
 
 const Header = ({ fixed }) =>
   <header class={`header${fixed ? ' fixed' : ''}`}>
